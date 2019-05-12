@@ -16,7 +16,7 @@ def budget(checking, credit, checking_target, savings_ratio):
 	# if I don't have enough money to cover the credit card bill without dropping below target
 	if after_paying_credit < checking_target:
 		click.secho("Make more money or spend less. You have to live like no one else so later you can live like no one else!", fg="red")
-		to_savings = -1 * credit # draw from savings so as not to empty checking
+		to_savings = -1 * (credit - (checking - checking_target)) # draw from savings so as not to empty checking
 		to_retirement = 0 # no money to retirement
 
 
