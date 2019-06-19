@@ -50,10 +50,11 @@
       </b-col>
     </b-row>
     <hr />
-    <h2 v-if="income < 0" class="text-danger text-center">
+    <h2 v-if="income < 0" class="text-center">
       Oh no! There's not enough money to meet the budget. Move
-      {{ (-1 * toSavings) | toUSD }} from savings to cover the shortfall. Live
-      like no one else so later you can live like no one else!
+      <span class="text-danger">{{ (-1 * toSavings) | toUSD }}</span> from
+      savings to cover the shortfall. Live like no one else so later you can
+      live like no one else!
     </h2>
     <h2 v-else class="text-center">
       Move <span class="text-success">{{ toSavings | toUSD }}</span> to savings,
