@@ -15,6 +15,7 @@
               <b-form-input
                 id="checkingBalance"
                 v-model.number="checkingBalance"
+                type="number"
               ></b-form-input>
             </b-input-group>
           </b-form-group>
@@ -29,6 +30,7 @@
               <b-form-input
                 id="creditBalance"
                 v-model.number="creditBalance"
+                type="number"
               ></b-form-input>
             </b-input-group>
           </b-form-group>
@@ -43,10 +45,48 @@
               <b-form-input
                 id="remainingBudget"
                 v-model.number="remainingBudget"
+                type="number"
               ></b-form-input>
             </b-input-group>
           </b-form-group>
         </b-form>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col class="text-center"
+        ><a v-b-toggle="'options'" href="#" class="small text-muted">Options</a>
+        <b-collapse id="options">
+          <b-card
+            ><p class="card-text">
+              <b-form-group
+                label-for="savingsPercent"
+                label="Savings percentage:"
+                label-cols-lg="2"
+              >
+                <b-input-group :append="savingsPercent + '%'">
+                  <b-form-input
+                    type="range"
+                    min="0"
+                    max="100"
+                    v-model="savingsPercent"
+                  ></b-form-input>
+                </b-input-group>
+              </b-form-group>
+              <b-form-group
+                label-for="checkingTarget"
+                label="Checking target:"
+                label-cols-lg="2"
+              >
+                <b-input-group prepend="$">
+                  <b-form-input
+                    id="checkingTarget"
+                    v-model="checkingTarget"
+                    type="number"
+                  ></b-form-input>
+                </b-input-group>
+              </b-form-group></p
+          ></b-card>
+        </b-collapse>
       </b-col>
     </b-row>
     <hr />
@@ -78,7 +118,7 @@ export default {
       creditBalance: 0,
       remainingBudget: 0,
       checkingTarget: 250,
-      savingsRatio: 0.2
+      savingsPercent: 20
     };
   },
   computed: {
@@ -106,7 +146,7 @@ export default {
         );
       }
 
-      return this.income * this.savingsRatio;
+      return this.income * this.savingsPercent * 0.01;
     },
     toRetirement() {
       if (this.income > 0) {
